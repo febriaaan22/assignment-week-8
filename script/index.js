@@ -24,18 +24,19 @@ app.get('/finance', (req, res) => {
 });
 app.get('/finance/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    if (app_1.finance) {
-        res.json(app_1.finance);
+    let financial = app_1.finance.filter((item) => item.id === id);
+    if (financial === null) {
+        res.status(404).json({ message: 'Produk tidak ditemukan' });
     }
     else {
-        res.status(404).json({ message: 'Produk tidak ditemukan' });
+        res.json(financial);
     }
 });
 // Post
 app.post('/finance', (req, res) => {
     const newFinancial = {
         id: app_1.finance.length + 1,
-        type: req.body.boolean,
+        type: req.body.type,
         name: req.body.name,
         details: req.body.details,
         amount: req.body.amount,
@@ -50,7 +51,7 @@ app.put('finance/:id', (req, res) => {
     if (financialIndex !== -1) {
         const updatedFinancial = {
             id: app_1.finance.length + 1,
-            type: req.body.boolean,
+            type: req.body.type,
             name: req.body.name,
             details: req.body.details,
             amount: req.body.amount,
