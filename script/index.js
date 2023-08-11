@@ -59,6 +59,9 @@ app.put('finance/:id', (req, res) => {
         app_1.finance[financialIndex] = updatedFinancial;
         res.json(updatedFinancial);
     }
+    else {
+        res.status(404).json({ message: "Produk tidak ditemukan" });
+    }
 });
 // Patch
 app.patch("/finance/:id", (req, res) => {
