@@ -50,7 +50,7 @@ app.put('finance/:id', (req, res) => {
     const financialIndex = app_1.finance.findIndex((f) => f.id === id);
     if (financialIndex !== -1) {
         const updatedFinancial = {
-            id: app_1.finance.length + 1,
+            id,
             type: req.body.type,
             name: req.body.name,
             details: req.body.details,
